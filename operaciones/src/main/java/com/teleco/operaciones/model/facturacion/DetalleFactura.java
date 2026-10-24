@@ -24,6 +24,10 @@ public class DetalleFactura extends BaseEntity {
     @JoinColumn(name = "factura_id", nullable = false)
     private Factura factura;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "producto_servicio_id", nullable = false)
+    private ProductoServicio productoServicio;
+
     public String getDescripcion() {
         return descripcion;
     }
