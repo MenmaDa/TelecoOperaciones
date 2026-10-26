@@ -5,6 +5,8 @@ import com.teleco.operaciones.model.proyectos.Tarea;
 import com.teleco.operaciones.service.proyectos.TareaService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.security.core.Authentication;
+import com.teleco.operaciones.model.proyectos.TareaProgresoRequest;
 
 import java.util.List;
 import java.util.UUID;
@@ -35,6 +37,11 @@ public class TareaController {
         return tareaService.listarPorProyecto(proyectoId);
     }
 
+    @GetMapping("/mis-tareas")
+    public List<Tarea> listarMisTareas(Authentication authentication) {
+        return tareaService.listarMisTareas(authentication.getName());
+    }
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Tarea crear(@RequestBody TareaRequest request) {
@@ -53,5 +60,18 @@ public class TareaController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void eliminar(@PathVariable UUID id) {
         tareaService.eliminar(id);
+    }
+
+    @PatchMapping("/{id}/mi-progreso")
+    public Tarea actualizarMiProgreso(
+            @PathVariable UUID id,
+            @RequestBody TareaProgresoRequest request,
+            Authentication authentication
+    ) {
+        return tareaService.actualizarMiProgreso(
+                id,
+                request,
+                authentication.getName()
+        );
     }
 }

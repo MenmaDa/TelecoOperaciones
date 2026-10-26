@@ -6,6 +6,7 @@ import com.teleco.operaciones.model.shared.BaseEntity;
 import jakarta.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "usuarios")
@@ -14,6 +15,7 @@ public class Usuario extends BaseEntity {
     @Column(nullable = false, unique = true)
     private String email;
 
+    @JsonIgnore
     @Column(nullable = false)
     private String passwordHash;
 
@@ -27,11 +29,16 @@ public class Usuario extends BaseEntity {
     )
     private Set<Rol> roles = new HashSet<>();
 
+    @JsonIgnore
     @OneToOne(mappedBy = "usuario", fetch = FetchType.LAZY)
     private Empleado empleado;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "usuario", fetch = FetchType.LAZY)
     private ContactoCliente contactoCliente;
+
+    @Column(length = 500)
+    private String fotoPerfilUrl;
 
     public String getEmail() {
         return email;
@@ -79,5 +86,13 @@ public class Usuario extends BaseEntity {
 
     public void setContactoCliente(ContactoCliente contactoCliente) {
         this.contactoCliente = contactoCliente;
+    }
+
+    public String getFotoPerfilUrl() {
+        return fotoPerfilUrl;
+    }
+
+    public void setFotoPerfilUrl(String fotoPerfilUrl) {
+        this.fotoPerfilUrl = fotoPerfilUrl;
     }
 }

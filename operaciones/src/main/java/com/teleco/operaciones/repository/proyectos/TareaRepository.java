@@ -10,5 +10,5 @@ public interface TareaRepository extends JpaRepository<Tarea, UUID> {
 
     List<Tarea> findByProyectoId(UUID proyectoId);
 
-    List<Tarea> findByResponsableId(UUID responsableId);
+    List<Tarea> findByResponsableUsuarioId(UUID usuarioId);
 }

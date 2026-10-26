@@ -9,7 +9,7 @@ import java.util.UUID;
 public interface AsignacionRecursoRepository
         extends JpaRepository<AsignacionRecurso, UUID> {
 
-    List<AsignacionRecurso> findByProyectoId(UUID proyectoId);
-
     List<AsignacionRecurso> findByEmpleadoId(UUID empleadoId);
+
+    List<AsignacionRecurso> findByProyectoId(UUID proyectoId);
 }

@@ -1,4 +1,5 @@
 package com.teleco.operaciones.model.clientes;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.teleco.operaciones.model.shared.BaseEntity;
 import jakarta.persistence.*;
 
@@ -20,6 +21,7 @@ public class Cliente extends BaseEntity {
     private String direccion;
 
     @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<ContactoCliente> contactos = new ArrayList<>();
 
     public String getRazonSocial() {

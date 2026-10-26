@@ -8,7 +8,11 @@ import java.util.UUID;
 
 public interface FacturaRepository extends JpaRepository<Factura, UUID> {
 
+    boolean existsByNumero(String numero);
+
+    boolean existsByNumeroAndIdNot(String numero, UUID id);
+
     List<Factura> findByClienteId(UUID clienteId);
 
-    boolean existsByNumero(String numero);
+    List<Factura> findByEstado(Factura.EstadoFactura estado);
 }

@@ -34,7 +34,11 @@ public class Factura extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private EstadoFactura estado;
 
-    @OneToMany(mappedBy = "factura", cascade = CascadeType.ALL)
+    @OneToMany(
+            mappedBy = "factura",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
     private List<DetalleFactura> detalles = new ArrayList<>();
 
     public String getNumero() {

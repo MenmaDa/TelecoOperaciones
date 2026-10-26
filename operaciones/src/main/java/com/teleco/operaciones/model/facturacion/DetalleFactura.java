@@ -1,7 +1,9 @@
 package com.teleco.operaciones.model.facturacion;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.teleco.operaciones.model.shared.BaseEntity;
 import jakarta.persistence.*;
+
 import java.math.BigDecimal;
 
 @Entity
@@ -20,6 +22,7 @@ public class DetalleFactura extends BaseEntity {
     @Column(nullable = false, precision = 15, scale = 2)
     private BigDecimal subtotal;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "factura_id", nullable = false)
     private Factura factura;
@@ -58,6 +61,7 @@ public class DetalleFactura extends BaseEntity {
         return subtotal;
     }
 
+    @JsonIgnore
     public Factura getFactura() {
         return factura;
     }
@@ -66,9 +70,19 @@ public class DetalleFactura extends BaseEntity {
         this.factura = factura;
     }
 
+    public ProductoServicio getProductoServicio() {
+        return productoServicio;
+    }
+
+    public void setProductoServicio(ProductoServicio productoServicio) {
+        this.productoServicio = productoServicio;
+    }
+
     private void calcularSubtotal() {
         if (cantidad != null && valorUnitario != null) {
-            this.subtotal = valorUnitario.multiply(BigDecimal.valueOf(cantidad));
+            this.subtotal = valorUnitario.multiply(
+                    BigDecimal.valueOf(cantidad)
+            );
         }
     }
 }

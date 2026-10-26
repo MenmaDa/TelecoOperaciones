@@ -1,7 +1,9 @@
 package com.teleco.operaciones.model.auth;
 
 import com.teleco.operaciones.model.shared.BaseEntity;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "roles")

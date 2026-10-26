@@ -3,6 +3,7 @@ package com.teleco.operaciones.model.shared;
 import com.teleco.operaciones.model.auth.Usuario;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "notificaciones")
@@ -23,6 +24,7 @@ public class Notificacion extends BaseEntity {
     @Column(nullable = false)
     private LocalDateTime fecha;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "usuario_id", nullable = false)
     private Usuario usuario;
@@ -75,6 +77,8 @@ public class Notificacion extends BaseEntity {
         this.usuario = usuario;
     }
     public enum TipoNotificacion {
+        TAREA_ASIGNADA,
+        TAREA_ACTUALIZADA,
         TAREA_VENCIDA,
         FACTURA_VENCIDA,
         CONTRATO_POR_VENCER,

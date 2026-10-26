@@ -8,5 +8,5 @@ import java.util.UUID;
 
 public interface PagoRepository extends JpaRepository<Pago, UUID> {
 
-    List<Pago> findByFacturaId(UUID facturaId);
+    List<Pago> findByFacturaIdOrderByFechaPagoDesc(UUID facturaId);
 }
