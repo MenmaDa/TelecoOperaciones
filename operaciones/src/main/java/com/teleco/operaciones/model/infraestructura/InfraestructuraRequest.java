@@ -10,6 +10,8 @@ public record InfraestructuraRequest(
         String modelo,
         String numeroSerie,
         String direccionIp,
+        Integer puertoMonitoreo,
+        Boolean monitoreoHabilitado,
         String capacidad,
         UUID sedeId,
         UUID responsableId,

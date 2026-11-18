@@ -99,6 +99,16 @@ public class InfraestructuraService {
             );
         }
 
+        if (request.puertoMonitoreo() != null
+                && (request.puertoMonitoreo() < 1
+                || request.puertoMonitoreo() > 65535)) {
+
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST,
+                    "Monitoring port must be between 1 and 65535"
+            );
+        }
+
         Sede sede = request.sedeId() == null
                 ? null
                 : sedeRepo.findById(request.sedeId())
@@ -121,6 +131,13 @@ public class InfraestructuraService {
         infraestructura.setModelo(request.modelo());
         infraestructura.setNumeroSerie(request.numeroSerie());
         infraestructura.setDireccionIp(request.direccionIp());
+        infraestructura.setPuertoMonitoreo(request.puertoMonitoreo());
+
+        if (request.monitoreoHabilitado() != null) {
+            infraestructura.setMonitoreoHabilitado(
+                    request.monitoreoHabilitado()
+            );
+        }
         infraestructura.setCapacidad(request.capacidad());
         infraestructura.setSede(sede);
         infraestructura.setResponsable(responsable);
@@ -148,6 +165,8 @@ public class InfraestructuraService {
                 infraestructura.getModelo(),
                 infraestructura.getNumeroSerie(),
                 infraestructura.getDireccionIp(),
+                infraestructura.getPuertoMonitoreo(),
+                infraestructura.isMonitoreoHabilitado(),
                 infraestructura.getCapacidad(),
                 sede != null ? sede.getId() : null,
                 sede != null ? sede.getNombre() : null,

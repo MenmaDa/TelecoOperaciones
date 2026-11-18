@@ -11,6 +11,8 @@ public record InfraestructuraResponse(
         String modelo,
         String numeroSerie,
         String direccionIp,
+        Integer puertoMonitoreo,
+        boolean monitoreoHabilitado,
         String capacidad,
         UUID sedeId,
         String sedeNombre,

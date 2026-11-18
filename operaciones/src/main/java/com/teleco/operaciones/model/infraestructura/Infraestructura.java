@@ -42,6 +42,11 @@ public class Infraestructura extends BaseEntity {
     @Column(length = 2000)
     private String descripcion;
 
+    private Integer puertoMonitoreo;
+
+    @Column(nullable = false)
+    private boolean monitoreoHabilitado = true;
+
     public String getNombre() {
         return nombre;
     }
@@ -144,6 +149,22 @@ public class Infraestructura extends BaseEntity {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public Integer getPuertoMonitoreo() {
+        return puertoMonitoreo;
+    }
+
+    public void setPuertoMonitoreo(Integer puertoMonitoreo) {
+        this.puertoMonitoreo = puertoMonitoreo;
+    }
+
+    public boolean isMonitoreoHabilitado() {
+        return monitoreoHabilitado;
+    }
+
+    public void setMonitoreoHabilitado(boolean monitoreoHabilitado) {
+        this.monitoreoHabilitado = monitoreoHabilitado;
     }
 
     public enum TipoInfraestructura {

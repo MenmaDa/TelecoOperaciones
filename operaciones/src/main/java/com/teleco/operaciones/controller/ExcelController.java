@@ -1,9 +1,7 @@
-
 package com.teleco.operaciones.controller;
 
-import com.teleco.operaciones.model.ExcelResponse;
-import com.teleco.operaciones.service.ExcelService;
-
+import com.teleco.operaciones.model.shared.ExcelResponse;
+import com.teleco.operaciones.service.shared.ExcelService;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -19,12 +17,13 @@ public class ExcelController {
     }
 
     @PostMapping(
-        value = "/leer",
-        consumes = MediaType.MULTIPART_FORM_DATA_VALUE
+            value = "/leer",
+            consumes = MediaType.MULTIPART_FORM_DATA_VALUE
     )
     public ExcelResponse leerExcel(
-        @RequestParam("archivo") MultipartFile archivo
+            @RequestParam("archivo") MultipartFile archivo,
+            @RequestParam(required = false) String hoja
     ) {
-        return excelService.leerExcel(archivo);
+        return excelService.leerExcel(archivo, hoja);
     }
 }
