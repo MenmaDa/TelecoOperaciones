@@ -17,7 +17,8 @@ public class CorsConfig {
 
         configuracion.setAllowedOriginPatterns(List.of(
                 "http://localhost:3000",
-                "https://nexuscloud-*.vercel.app"
+                "https://nexuscloud-*.vercel.app",
+                "https://nexus-cloud-*.vercel.app"
         ));
 
         configuracion.setAllowedMethods(List.of(
