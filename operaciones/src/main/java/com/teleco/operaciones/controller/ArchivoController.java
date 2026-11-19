@@ -64,7 +64,7 @@ public class ArchivoController {
             );
         }
 
-        String url = "http://localhost:8080/uploads/perfiles/" + nombreArchivo;
+        String url = "https://telecooperaciones-production.up.railway.app/uploads/perfiles/" + nombreArchivo;
 
         return Map.of("url", url);
     }

@@ -34,7 +34,7 @@ public class RecomendacionService {
             ClienteRepository clienteRepo,
             FacturaRepository facturaRepo,
             ProductoServicioRepository productoServicioRepo,
-            @Value("${app.recomendador.url:http://localhost:8000}")
+            @Value("${app.recomendador.url:https://apirecomendaciones-production.up.railway.app}")
             String urlModeloPython
     ) {
         this.clienteRepo = clienteRepo;
